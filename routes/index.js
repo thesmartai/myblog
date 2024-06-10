@@ -12,4 +12,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { hi: 'Hallo world' });
 });
 
+
+
+
+
+
+
+
 module.exports = router;
