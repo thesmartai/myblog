@@ -1,63 +1,32 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const multer = require('multer');
+const controller = require('../controller/blogController');
 
+// Konfiguration für Multer: Speicherort und Dateinamen festlegen
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../public/images/')); // Verzeichnis für Uploads angeben
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname); // Eindeutigen Dateinamen erstellen
+    }
+});
+const upload = multer({ storage: storage });
 
-var info=Array()
-var id=0;
-
-
-/* GET home page. */
-router.get('/newpost', function(req, res, next) {
-  res.render('blog');
+// Route: Render new post page
+router.get('/newpost', (req, res) => {
+    res.render(path.join(__dirname, '../views/createBlog'), { title: "Post Creation" });
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-res.send(info);
-});
+// Route: Get all posts
+router.get('/', controller.getAllPosts);
 
-/* GET home page. */
-router.post('/', function(req, res, next) 
-{
+// Route: Add new post (inklusive Dateiupload)
+router.post('/', upload.single('image'), controller.createPost);
 
-info.push({'id':id, 'title':req.body.title, 'date':req.body.datum, 'name':req.body.benutzername,'text':req.body.text});  
-id=id+1;
-res.send("done!");
-
-
-});
-
-/* GET home page. */
-router.get('/:id', function(req, res, next) 
-{
-res.send(info[req.params.id]);
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Route: Get post by ID
+router.get('/:id', controller.readPost);
 
 module.exports = router;

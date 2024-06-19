@@ -1,33 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myblog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= title %></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2e2e2e;
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+        }
+
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-gap: 10px;
+            background-color: #4e4e4e;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #5a5a5a;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, border-radius 0.3s, box-shadow 0.3s;
+        }
+
+        .parent:hover {
+            background-color: #3e3e3e;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .img {
+            border-radius: 20px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #5a5a5a;
+        }
+
+        .div1 {
+            grid-area: 1 / 2 / 2 / 3;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 20px;
+            color: #f8f9fa;
+        }
+
+        .div2 {
+            grid-area: 3 / 1 / 3 / 5;
+            display: flex;
+            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .div3 {
+            grid-area: 2 / 2 / 3 / 4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            padding: 10px;
+            color: #dcdcdc;
+        }
+
+        .div4 {
+            grid-area: 1 / 1 / 3 / 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-
-
-
 <body>
+    <div class="container mt-5">
+        <% info.forEach(element => { %>
+            <div class="parent">
+                <div class="div1"><%= element.title %></div>
+                <% if (element.text) { %>
+                    <div class="div3"><%= element.text.substring(0, 30) %></div>
+                <% } else { %>
+                    <div class="div3">No text available</div>
+                <% } %>
+                <div class="div4">
+                    <img class="img" src="<%= element.image %>" alt="Artikel Bild" width="150px">
+                </div>
+                <div class="div2">
+                    <div ><%= element.name %></div>
+                    
+                   <div></div> <button onclick="window.location.href='<%= element.id %>'" class="btn">Show Post</button></div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
 
-
-
-<form action="/blog/" method="post">
-
-    <input type="text" name="title">    
-
-    <input type="text" name="benutzername">
-
-    <input type="date" name="datum">
-
-    <input type="text" name="text">
-
-    <input type="submit" >
-
-</form>
-
-
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 </body>
-
-
 </html>
