@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        body {
+            background-color: #2c2c2c; /* Dunkler Hintergrund */
+            color: #dcdcdc; /* Helle Schriftfarbe */
+            font-family: 'Times New Roman', Times, serif; /* Serifen-Schriftart */
+            font-size: 16px;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333333; /* Dunkles Grau */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="text"], input[type="date"], textarea, input[type="file"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4c4848; /* Dunkles Braun */
+            border: none;
+            border-radius: 5px;
+            color: #dcdcdc; /* Helle Schriftfarbe */
+            font-family: 'Times New Roman', Times, serif; /* Serifen-Schriftart */
+            font-size: 16px;
+        }
+
+        input[type="text"]::placeholder, input[type="date"]::placeholder, textarea::placeholder {
+            color: #a0a0a0; /* Hellgraue Platzhalterfarbe */
+        }
+
+        input[type="submit"] {
+            background-color: #a52a2a; /* Dunkles Rot */
+            color: #dcdcdc; /* Helle Schriftfarbe */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #800000; /* Dunkleres Rot beim Hover */
+        }
+
+        .textarea {
+   
+height: 500px;    
+
+}
+
+    </style>
+</head>
+<body>
+    <form action="/blog/" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="benutzername" placeholder="Benutzername">
+        <input type="date" name="datum">
+        <textarea class="textarea" name="text" placeholder="Text"></textarea>
+        <input type="file" name="image"> <!-- File-Input für den Bild-Upload -->
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
