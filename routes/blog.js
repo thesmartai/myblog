@@ -2,8 +2,18 @@ var express = require('express');
 var router = express.Router();
 
 
+
+
+
+
+
+
 var info=Array()
 var id=0;
+
+
+
+
 
 
 /* GET home page. */
